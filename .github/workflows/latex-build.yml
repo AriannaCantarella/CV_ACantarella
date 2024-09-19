@@ -24,9 +24,9 @@ jobs:
     - name: Compile LaTeX document
       run: |
         pdflatex -interaction=nonstopmode -halt-on-error -output-directory=output main.tex
-      working-directory: .
+      working-directory: ./
     - name: Upload PDF as artifact
       uses: actions/upload-artifact@v3
       with:
         name: compiled-cv
-        path: .
+        path: ./
