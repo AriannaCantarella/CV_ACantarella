@@ -1,0 +1,2 @@
+    - name: Create output directory
+      run: mkdir -p output  # This creates the 'output' directory if it doesn't exist
