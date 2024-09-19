@@ -1,0 +1,32 @@
+name: Build CV LaTeX Document
+
+on:
+  push:
+    branches:
+      - main  # Triggers on push to the main branch
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install TeX Live
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-full  # Install LaTeX (might take time)
+
+    - name: Compile LaTeX document
+      run: |
+        pdflatex -interaction=nonstopmode -halt-on-error -output-directory=output main.tex
+      working-directory: ../.. 
+    - name: Upload PDF as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: compiled-cv
+        path: .
